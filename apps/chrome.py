@@ -12,8 +12,12 @@ from utils.commands import (
     Wait,
 )
 from utils.constants import (
+    COLOR_1,
     COLOR_3,
+    COLOR_5,
+    COLOR_6,
     COLOR_7,
+    COLOR_8,
     COLOR_9,
     COLOR_BACK,
     COLOR_CHROME,
@@ -27,6 +31,18 @@ class ChromeApp(KeyApp):
 
     # First row
     key_0 = MacroKey(
+        "Back",
+        COLOR_BACK,
+        PreviousAppCommand(),
+        double_tap_command=PreviousAppCommand(),
+    )
+    key_1 = MacroKey(
+        "+Bkmk",
+        COLOR_1,
+        Press(Keycode.CONTROL, Keycode.D),
+        mac_command=Press(Keycode.COMMAND, Keycode.D),
+    )
+    key_2 = MacroKey(
         "Exit",
         COLOR_CLOSE,
         Sequence(
@@ -35,53 +51,45 @@ class ChromeApp(KeyApp):
         ),
         mac_command=Sequence(Press(Keycode.COMMAND, Keycode.Q), PreviousAppCommand()),
     )
-    key_1 = MacroKey(
-        "Switch",
-        COLOR_CHROME,
-        Sequence(
-            Press(Keycode.WINDOWS, Keycode.ONE),
-            Wait(0.1),
-            Release(Keycode.ONE, Keycode.WINDOWS),
-        ),
-        mac_command=Press(Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.C),
-    )
-    key_2 = MacroKey(
-        "Back",
-        COLOR_BACK,
-        PreviousAppCommand(),
-        double_tap_command=PreviousAppCommand(),
-    )
 
     # Second row
     key_3 = MacroKey(
-        "Bkmk",
+        "<-Tab",
         COLOR_3,
-        Press(Keycode.CONTROL, Keycode.D),
-        mac_command=Press(Keycode.COMMAND, Keycode.D),
+        Sequence(
+            Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.TAB),
+        ),
     )
     key_4 = MacroKey(
-        "Close",
+        "CloseTab",
         COLOR_CLOSE,
         Press(Keycode.CONTROL, Keycode.W),
         mac_command=Press(Keycode.COMMAND, Keycode.W),
+    )
+    key_5 = MacroKey(
+        "Tab->",
+        COLOR_5,
+        Sequence(
+            Press(Keycode.CONTROL, Keycode.TAB),
+        ),
     )
 
     # Third row
     key_6 = MacroKey(
         "<-",
-        COLOR_7,
+        COLOR_6,
         Press(Keycode.ALT, Keycode.LEFT_ARROW),
         mac_command=Press(Keycode.COMMAND, Keycode.LEFT_ARROW),
     )
     key_7 = MacroKey(
-        "Address",
-        COLOR_9,
-        Press(Keycode.CONTROL, Keycode.L),
-        mac_command=Press(Keycode.COMMAND, Keycode.L),
+        "Reload",
+        COLOR_7,
+        Press(Keycode.CONTROL, Keycode.R),
+        mac_command=Press(Keycode.COMMAND, Keycode.R),
     )
     key_8 = MacroKey(
         "->",
-        COLOR_7,
+        COLOR_8,
         Press(Keycode.ALT, Keycode.RIGHT_ARROW),
         mac_command=Press(Keycode.COMMAND, Keycode.RIGHT_ARROW),
     )
@@ -95,7 +103,7 @@ class ChromeApp(KeyApp):
     )
     key_10 = MacroKey(
         "Book",
-        COLOR_CHROME,
+        COLOR_1,
         Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.O),
         mac_command=Press(Keycode.COMMAND, Keycode.OPTION, Keycode.B),
     )

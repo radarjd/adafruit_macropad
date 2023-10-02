@@ -8,7 +8,7 @@ from utils.commands import (
     Press,
     PreviousAppCommand,
 )
-from utils.constants import COLOR_FUNC
+from utils.constants import COLOR_FUNC,COLOR_BACK
 
 
 class FuncKeysApp(KeyApp):
@@ -17,9 +17,7 @@ class FuncKeysApp(KeyApp):
     # First row
     key_0 = Key("F1", COLOR_FUNC, Press(Keycode.F1))
     key_1 = Key("F2", COLOR_FUNC, Press(Keycode.F2))
-    key_2 = Key(
-        "F3", COLOR_FUNC, Press(Keycode.F3), double_tap_command=PreviousAppCommand()
-    )
+    key_2 = Key("F3", COLOR_FUNC, Press(Keycode.F3), double_tap_command=PreviousAppCommand())
 
     # Second row
     key_3 = Key("F4", COLOR_FUNC, Press(Keycode.F4))
@@ -34,7 +32,7 @@ class FuncKeysApp(KeyApp):
     # Fourth row
     key_9 = Key("F10", COLOR_FUNC, Press(Keycode.F10))
     key_10 = Key("F11", COLOR_FUNC, Press(Keycode.F11))
-    key_11 = Key("F12", COLOR_FUNC, Press(Keycode.F12))
+    key_11 = Key("<", COLOR_BACK, PreviousAppCommand())
 
     encoder_button = Media(ConsumerControlCode.MUTE)
 

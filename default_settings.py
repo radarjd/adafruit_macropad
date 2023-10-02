@@ -39,6 +39,8 @@ from utils.constants import (
     COLOR_WARNING,
     COLOR_WINDOWS,
     COLOR_WINMAN,
+    COLOR_WORD,
+    COLOR_ZOOM,
     OS_WINDOWS,
 )
 
@@ -78,6 +80,8 @@ class AppSettings(KeyAppSettings):
         COLOR_SPOTIFY: 0x1ED760,
         COLOR_SUBLIME_MERGE: 0x00B3B3,
         COLOR_TERMINAL: COLOR_10,
+        COLOR_WORD: 0x7986CB,
+        COLOR_ZOOM: 0x64B5F6,
     }
     host_os = OS_WINDOWS
 

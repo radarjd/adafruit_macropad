@@ -23,28 +23,22 @@ from utils.constants import (
 class SpotifyApp(KeyApp):
     name = "Spotify"
 
-    key_0 = MacroKey(
-        "Exit",
-        COLOR_CLOSE,
-        Sequence(
-            Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.Q),
-            PreviousAppCommand(),
-        ),
-        mac_command=Sequence(Press(Keycode.COMMAND, Keycode.Q), PreviousAppCommand()),
-    )
-    key_1 = MacroKey(
-        "Switch",
-        COLOR_SPOTIFY,
-        Press(Keycode.WINDOWS, Keycode.SEVEN),
-        mac_command=Press(Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.S),
-    )
-    key_2 = Key(
+    key_0 = Key(
         "Back",
         COLOR_BACK,
         PreviousAppCommand(),
         double_tap_command=PreviousAppCommand(),
     )
 
+    key_2 = MacroKey(
+        "Exit",
+        COLOR_CLOSE,
+        Sequence(
+            Press(Keycode.ALT, Keycode.F4),
+            PreviousAppCommand(),
+        )
+    )
+    
     key_3 = MacroKey(
         "Search",
         COLOR_SPOTIFY,

@@ -7,6 +7,9 @@ except ImportError:
 
 from apps.chrome import ChromeApp
 from apps.spotify import SpotifyApp
+from apps.mswindows import WindowsApp
+from apps.word import WordApp
+from apps.zoom import ZoomApp
 from utils.app_pad import AppPad
 from utils.apps.key import Key, KeyApp, KeyAppSettings, MacroKey
 from utils.commands import (
@@ -26,12 +29,16 @@ from utils.constants import (
     COLOR_CHROME,
     COLOR_CODE,
     COLOR_FILES,
+    COLOR_MEDIA,
     COLOR_NOTION,
     COLOR_PYCHARM,
     COLOR_SLACK,
     COLOR_SPOTIFY,
     COLOR_SUBLIME_MERGE,
     COLOR_TERMINAL,
+    COLOR_WINDOWS,
+    COLOR_WORD,
+    COLOR_ZOOM,
     OS_MAC,
 )
 
@@ -45,73 +52,10 @@ class AppSwitcherApp(KeyApp):
 
     name = "App Switcher"
 
-    key_2 = Key(
-        "Back",
-        COLOR_BACK,
-        PreviousAppCommand(),
-        double_tap_command=PreviousAppCommand(),
-    )
-
-    key_3 = MacroKey(
-        "Term",
-        COLOR_TERMINAL,
-        Press(Keycode.WINDOWS, Keycode.FOUR),
-        mac_command=Press(Keycode.COMMAND, Keycode.SHIFT, Keycode.ENTER),
-    )
-    key_4 = MacroKey(
-        "Files",
-        COLOR_FILES,
-        Press(Keycode.WINDOWS, Keycode.TWO),
-        mac_command=Press(Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.F),
-    )
-    key_5 = MacroKey(
-        "Spotify",
-        COLOR_SPOTIFY,
-        Press(Keycode.WINDOWS, Keycode.SEVEN),
-        mac_command=Press(Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.S),
-    )
-
-    key_6 = MacroKey(
-        "PyCharm",
-        COLOR_PYCHARM,
-        Press(Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.H),
-        windows_command=None,
-    )
-    key_7 = MacroKey(
-        "Code",
-        COLOR_CODE,
-        Press(Keycode.WINDOWS, Keycode.FIVE),
-        mac_command=Press(Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.V),
-    )
-    key_8 = MacroKey(
-        "Merge",
-        COLOR_SUBLIME_MERGE,
-        Press(Keycode.WINDOWS, Keycode.SIX),
-        mac_command=Press(Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.M),
-    )
-
-    key_9 = MacroKey(
-        "Chrome",
-        COLOR_CHROME,
-        Sequence(
-            Press(Keycode.WINDOWS, Keycode.ONE),
-            Wait(0.1),
-            Release(Keycode.ONE, Keycode.WINDOWS),
-        ),
-        mac_command=Press(Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.C),
-    )
-    key_10 = MacroKey(
-        "Notion",
-        COLOR_NOTION,
-        Press(Keycode.WINDOWS, Keycode.THREE),
-        mac_command=Press(Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.N),
-    )
-    key_11 = MacroKey(
-        "Slack",
-        COLOR_SLACK,
-        Press(Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.L),
-        windows_command=None,
-    )
+    # Fourth row
+    key_9 = Key("<<", COLOR_MEDIA, Media(ConsumerControlCode.SCAN_PREVIOUS_TRACK))
+    key_10 = Key(">||", COLOR_MEDIA, Media(ConsumerControlCode.PLAY_PAUSE))
+    key_11 = Key(">>", COLOR_MEDIA, Media(ConsumerControlCode.SCAN_NEXT_TRACK))
 
     encoder_button = Media(ConsumerControlCode.MUTE)
 
@@ -128,55 +72,50 @@ class AppSwitcherApp(KeyApp):
     ):
         chrome_app = ChromeApp(app_pad, settings)
         spotify_app = SpotifyApp(app_pad, settings)
+        word_app = WordApp(app_pad, settings)
+        zoom_app = ZoomApp(app_pad, settings)
+        windows_app = WindowsApp(app_pad, settings)
 
-        cls.key_5 = MacroKey(
-            "Spotify",
-            COLOR_SPOTIFY,
-            Press(Keycode.WINDOWS, Keycode.SEVEN),
-            mac_command=Press(
-                Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.S
-            ),
-            double_tap_command=MacroCommand(
-                Sequence(
-                    Press(Keycode.WINDOWS, Keycode.SEVEN),
-                    SwitchAppCommand(spotify_app),
-                ),
-                **{
-                    OS_MAC: Sequence(
-                        Press(
-                            Keycode.COMMAND, Keycode.OPTION, Keycode.CONTROL, Keycode.S
-                        ),
-                        SwitchAppCommand(spotify_app),
-                    ),
-                }
-            ),
+
+        # First row
+        cls.key_0 = Key(
+            text ="Back",
+            color=COLOR_BACK,
+            command=PreviousAppCommand()
+        )
+        cls.key_1 = Key(
+            text="Windows",
+            color=COLOR_WINDOWS,
+            command=SwitchAppCommand(windows_app)
         )
 
-        cls.key_9 = MacroKey(
-            "Chrome",
-            COLOR_CHROME,
-            Sequence(
-                Press(Keycode.WINDOWS, Keycode.ONE),
-                Wait(0.1),
-                Release(Keycode.ONE, Keycode.WINDOWS),
-            ),
-            mac_command=Press(
-                Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.C
-            ),
-            double_tap_command=MacroCommand(
-                Sequence(
-                    Press(Keycode.WINDOWS, Keycode.ONE),
-                    Wait(0.1),
-                    Release(Keycode.ONE, Keycode.WINDOWS),
-                    SwitchAppCommand(chrome_app),
-                ),
-                **{
-                    OS_MAC: Sequence(
-                        Press(
-                            Keycode.COMMAND, Keycode.CONTROL, Keycode.OPTION, Keycode.C
-                        ),
-                        SwitchAppCommand(chrome_app),
-                    ),
-                }
-            ),
+        cls.key_2 = Key(
+            text="Word",
+            color=COLOR_WORD,
+            command=SwitchAppCommand(word_app)
         )
+
+        # Second row
+        cls.key_3 = Key(
+            text="Chrome",
+            color=COLOR_CHROME,
+            command=SwitchAppCommand(chrome_app)
+        )
+        #4
+        cls.key_5 = Key(
+            text="Zoom",
+            color=COLOR_ZOOM,
+            command=SwitchAppCommand(zoom_app)
+        )
+
+        # Third row
+        #6
+        cls.key_7 = Key(
+            text="Spotify",
+            color=COLOR_SPOTIFY,
+            command=SwitchAppCommand(spotify_app)
+        )
+        #8
+
+        # Fourth row
+        # Media Keys ABOVE /\

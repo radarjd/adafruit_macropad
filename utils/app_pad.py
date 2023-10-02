@@ -165,7 +165,7 @@ class AppPad:
 
     """
 
-    DOUBLE_TAP_TIMEOUT = 0.2
+    DOUBLE_TAP_TIMEOUT = 0.6
     # The delay in seconds to clear the double tap buffer
 
     DOUBLE_TAP_TIMER_ID = "_DRAIN_DOUBLE_TAP_BUFFER"

@@ -8,31 +8,36 @@ from utils.commands import (
     Press,
     PreviousAppCommand,
 )
-from utils.constants import COLOR_2, COLOR_4, COLOR_8, COLOR_ALERT, COLOR_NAV
+from utils.constants import COLOR_2, COLOR_4, COLOR_8, COLOR_ALERT, COLOR_CLOSE, COLOR_NAV
 
 
 class NavApp(KeyApp):
     name = "Navigation"
 
-    key_0 = Key("PrtScrn", COLOR_8, Press(Keycode.PRINT_SCREEN))
-    key_1 = MacroKey(
+
+    key_0 = Key(
+        text ="Back",
+        color=COLOR_CLOSE,
+        command=PreviousAppCommand()
+    )
+
+    key_1 = Key("PrtScrn", COLOR_8, Press(Keycode.PRINT_SCREEN))
+    key_2 = Key(
         "Home",
         COLOR_2,
         Press(Keycode.HOME),
-        mac_command=Press(Keycode.COMMAND, Keycode.LEFT_ARROW),
     )
-    key_2 = Key(
-        "PgUp", COLOR_4, Press(Keycode.PAGE_UP), double_tap_command=PreviousAppCommand()
+    key_3 = Key(
+        "PgUp", COLOR_4, Press(Keycode.PAGE_UP)
     )
 
-    key_3 = Key("Del", COLOR_ALERT, Press(Keycode.DELETE))
-    key_4 = MacroKey(
+    key_4 = Key("Del", COLOR_ALERT, Press(Keycode.DELETE))
+    key_5 = Key(
         "End",
         COLOR_2,
         Press(Keycode.END),
-        mac_command=Press(Keycode.COMMAND, Keycode.RIGHT_ARROW),
     )
-    key_5 = Key("PgDn", COLOR_4, Press(Keycode.PAGE_DOWN))
+    key_6 = Key("PgDn", COLOR_4, Press(Keycode.PAGE_DOWN))
 
     key_7 = Key("/\\", COLOR_NAV, Press(Keycode.UP_ARROW))
 

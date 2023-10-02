@@ -9,6 +9,7 @@ except ImportError:
     pass
 
 from apps.func import FuncKeysApp
+from apps.mswindows import WindowsApp
 from apps.nav import NavApp
 from apps.numpad import NumpadApp
 from apps.switcher import AppSwitcherApp
@@ -85,6 +86,7 @@ class HomeApp(KeyApp):
     def initialize_settings_dependent_keys(
         cls, app_pad: AppPad, settings: Optional[KeyAppSettings] = None
     ):
+        # First row
         settings_app = MacroSettingsApp(app_pad, settings)
         cls.key_0 = SettingsValueKey(
             OS_SETTING,
@@ -96,7 +98,10 @@ class HomeApp(KeyApp):
             },
             text_template="[ {value} ]",
         )
+        #1
+        #2
 
+        # Second row
         numpad_app = NumpadApp(app_pad, settings)
         cls.key_3 = Key(
             text="Num", color=COLOR_NUMPAD, command=SwitchAppCommand(numpad_app)
@@ -110,14 +115,22 @@ class HomeApp(KeyApp):
             text="Func", color=COLOR_FUNC, command=SwitchAppCommand(func_keys_app)
         )
 
+        # Third row
         app_switcher_app = AppSwitcherApp(app_pad, settings)
         cls.key_6 = Key(
             text="Apps", color=COLOR_APPS, command=SwitchAppCommand(app_switcher_app)
         )
-
-        window_manager_app = WindowManagementApp(app_pad, settings)
+        #7
+#         window_manager_app = WindowManagementApp(app_pad, settings)
+#         cls.key_8 = Key(
+#             text="WinMan",
+#             color=COLOR_WINMAN,
+#             command=SwitchAppCommand(window_manager_app),
+#         )
+        windows_app = WindowsApp(app_pad, settings)
         cls.key_8 = Key(
-            text="WinMan",
-            color=COLOR_WINMAN,
-            command=SwitchAppCommand(window_manager_app),
+            text="Windows", color=COLOR_WINDOWS, command=SwitchAppCommand(windows_app)
         )
+        
+        # Fourth row
+        # Media Keys ABOVE /\
