@@ -8,6 +8,7 @@ try:
 except ImportError:
     pass
 
+from apps.games import GamesApp
 from apps.func import FuncKeysApp
 from apps.mswindows import WindowsApp
 from apps.nav import NavApp
@@ -31,6 +32,7 @@ from utils.commands import (
 from utils.constants import (
     COLOR_APPS,
     COLOR_FUNC,
+    COLOR_GAMES,
     COLOR_LINUX,
     COLOR_MAC,
     COLOR_MEDIA,
@@ -48,7 +50,7 @@ from utils.constants import (
 class MacroSettingsApp(KeyApp):
     name = "Macropad Settings"
 
-    key_0 = SettingsSelectKey("MAC", 0x555555, OS_SETTING, OS_MAC, PreviousAppCommand())
+#    key_0 = SettingsSelectKey("MAC", 0x555555, OS_SETTING, OS_MAC, PreviousAppCommand())
     key_1 = SettingsSelectKey(
         "WIN", 0x00A4EF, OS_SETTING, OS_WINDOWS, PreviousAppCommand()
     )
@@ -92,7 +94,7 @@ class HomeApp(KeyApp):
             OS_SETTING,
             SwitchAppCommand(settings_app),
             color_mapping={
-                OS_MAC: COLOR_MAC,
+#                OS_MAC: COLOR_MAC,
                 OS_WINDOWS: COLOR_WINDOWS,
                 OS_LINUX: COLOR_LINUX,
             },
@@ -120,16 +122,15 @@ class HomeApp(KeyApp):
         cls.key_6 = Key(
             text="Apps", color=COLOR_APPS, command=SwitchAppCommand(app_switcher_app)
         )
-        #7
-#         window_manager_app = WindowManagementApp(app_pad, settings)
-#         cls.key_8 = Key(
-#             text="WinMan",
-#             color=COLOR_WINMAN,
-#             command=SwitchAppCommand(window_manager_app),
-#         )
+        
+        games_app = GamesApp(app_pad, settings)
+        cls.key_7 = Key(
+            text="Games", color=COLOR_GAMES, command=SwitchAppCommand(games_app),
+        )
+        
         windows_app = WindowsApp(app_pad, settings)
         cls.key_8 = Key(
-            text="Windows", color=COLOR_WINDOWS, command=SwitchAppCommand(windows_app)
+            text="Win", color=COLOR_WINDOWS, command=SwitchAppCommand(windows_app)
         )
         
         # Fourth row

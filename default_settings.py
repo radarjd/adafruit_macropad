@@ -24,6 +24,7 @@ from utils.constants import (
     COLOR_CODE,
     COLOR_FILES,
     COLOR_FUNC,
+    COLOR_GAMES,
     COLOR_GO,
     COLOR_LINUX,
     COLOR_MAC,
@@ -42,6 +43,13 @@ from utils.constants import (
     COLOR_WORD,
     COLOR_ZOOM,
     OS_WINDOWS,
+    
+    COLOR_HOTS,
+    COLOR_IDLECHAMPIONS,
+    COLOR_MSFS,
+    COLOR_ONI,
+    COLOR_STARFIELD,
+    COLOR_STINFINITE,
 )
 
 
@@ -74,6 +82,7 @@ class AppSettings(KeyAppSettings):
         COLOR_CHROME: 0xDC5044,
         COLOR_CODE: 0x1774A5,
         COLOR_FILES: COLOR_2,
+        COLOR_GAMES: 0x7A33FF,
         COLOR_NOTION: COLOR_4,
         COLOR_PYCHARM: 0xF4F048,
         COLOR_SLACK: 0x481449,
@@ -82,6 +91,13 @@ class AppSettings(KeyAppSettings):
         COLOR_TERMINAL: COLOR_10,
         COLOR_WORD: 0x7986CB,
         COLOR_ZOOM: 0x64B5F6,
+        
+        COLOR_HOTS: 0x33F9FF,
+        COLOR_IDLECHAMPIONS: 0xFF0000,
+        COLOR_MSFS: 0xDDFEFF,
+        COLOR_ONI: 0xFF9D05,
+        COLOR_STARFIELD: 0xF7FF05,
+        COLOR_STINFINITE: 0xC6A22A, 
     }
     host_os = OS_WINDOWS
 
