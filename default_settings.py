@@ -49,7 +49,7 @@ from utils.constants import (
     COLOR_MSFS,
     COLOR_ONI,
     COLOR_STARFIELD,
-    COLOR_STINFINITE,
+    COLOR_NOMANSSKY,
 )
 
 
@@ -97,7 +97,7 @@ class AppSettings(KeyAppSettings):
         COLOR_MSFS: 0xDDFEFF,
         COLOR_ONI: 0xFF9D05,
         COLOR_STARFIELD: 0xF7FF05,
-        COLOR_STINFINITE: 0xC6A22A, 
+        COLOR_NOMANSSKY: 0xC6A22A, 
     }
     host_os = OS_WINDOWS
 

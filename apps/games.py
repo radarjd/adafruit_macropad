@@ -10,7 +10,7 @@ from apps.idlechampions import IdleChampionsApp
 from apps.oni import ONIApp
 from apps.msfs import MSFSApp
 from apps.starfield import StarfieldApp
-from apps.stinfinite import STInfiniteApp
+from apps.nomanssky import NoMansSkyApp
 
 from apps.func import FuncKeysApp
 from apps.numpad import NumpadApp
@@ -42,7 +42,7 @@ from utils.constants import (
     COLOR_MSFS,
     COLOR_ONI,
     COLOR_STARFIELD,
-    COLOR_STINFINITE,
+    COLOR_NOMANSSKY,
 )
 
 
@@ -76,7 +76,7 @@ class GamesApp(KeyApp):
         msfs_app = MSFSApp(app_pad, settings)
         oni_app = ONIApp(app_pad, settings)
         starfield_app = StarfieldApp(app_pad, settings)
-        stinfinite_app = STInfiniteApp(app_pad, settings)
+        nomanssky_app = NoMansSkyApp(app_pad, settings)
 
 
         # First row
@@ -129,9 +129,9 @@ class GamesApp(KeyApp):
         )
 
         cls.key_8 = Key(
-            text="TrekInf",
-            color=COLOR_STINFINITE,
-            command=SwitchAppCommand(stinfinite_app)
+            text="NoMansSky",
+            color=COLOR_NOMANSSKY,
+            command=SwitchAppCommand(nomanssky_app)
         )
         # Fourth row
         # Media Keys ABOVE /\

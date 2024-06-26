@@ -1,4 +1,4 @@
-"""Hotkeys for Star Trek Infinite (also Stellaris)."""
+"""Hotkeys for No Man's Sky."""
 
 from utils.apps.key import Key, KeyApp, MacroKey
 from utils.commands import (
@@ -24,12 +24,12 @@ from utils.constants import (
     COLOR_BACK,
     COLOR_CLOSE,
     COLOR_MEDIA,
-    COLOR_STINFINITE,
+    COLOR_NOMANSSKY,
 )
 
 
-class STInfiniteApp(KeyApp):
-    name = "Infinite"
+class NoMansSkyApp(KeyApp):
+    name = "NoMansSky"
 
     key_0 = Key(
         "Back",
@@ -49,48 +49,48 @@ class STInfiniteApp(KeyApp):
     
     # second row
     key_3 = MacroKey(
-        "Map",
+        "Interact",
         COLOR_3,
-        Press(Keycode.M),
+        Press(Keycode.E),
     )
     key_4 = MacroKey(
-        "Chest",
+        "Scan",
         COLOR_4,
-        Press(Keycode.O),
+        Press(Keycode.C),
     )
     key_5 = MacroKey(
-        "Patron",
+        "Inv",
         COLOR_5,
-        Press(Keycode.P),
+        Press(Keycode.TAB),
     )
 
     # third row
     key_6 = MacroKey(
-        "Parties",
+        "Quick",
         COLOR_6,
-        Press(Keycode.FORWARD_SLASH),
+        Press(Keycode.X),
     )
     key_7 = MacroKey(
-        "Shop",
+        "Build",
         COLOR_7,
-        Press(Keycode.S),
+        Press(Keycode.Z),
     )
     key_8 = MacroKey(
-        "Pots",
+        "Mode",
         COLOR_8,
-        Press(Keycode.TAB),
+        Press(Keycode.G),
     )
 
     # Fourth row
     key_9 = MacroKey(
-        "Auto",
+        "Dash",
         COLOR_9,
-        Press(Keycode.G),
+        Sequence(Keycode.Q, Keycode.SPACE),
     )
     key_10 = MacroKey(
-        "Core",
+        "HUD",
         COLOR_10,
-        Press(Keycode.N),
+        Press(Keycode.H),
     )
     key_11 = MacroKey(
         "Menu",
